@@ -21,7 +21,6 @@ const person = {
 };
 
 let clonePerson = JSON.parse(JSON.stringify(person));
-
 const { fullName, address: {street, city, house} } = person;
 
 const dateBirthday = new Date(1994, 4, 28);
