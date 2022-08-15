@@ -2,11 +2,9 @@
 
 function isWeekend(date) {
     const weekDay = new Date(date);
-    if (weekDay.getDay() === 6 || weekDay.getDay() === 0) {
-        return true ;
-    } else {
-        return false;
-    }
+    const callResult = weekDay.getDay();
+    const dayOff = callResult === 6 || callResult === 0;
+    return dayOff;
 };
 console.log(isWeekend('2022-02-12')); 
 console.log(isWeekend('2022-02-13')); 
@@ -27,19 +25,22 @@ let clonePerson = JSON.parse(JSON.stringify(person));
 const { fullName, address: {street, city, house} } = person;
 
 const dateBirthday = new Date(1994, 4, 28);
-let strDateBirthday = `${dateBirthday.getDate()}.${`0` + (dateBirthday.getMonth() + 1)}.${dateBirthday.getFullYear()}`;
+let day = dateBirthday.getDate();
+let month = `0` + (dateBirthday.getMonth() + 1);
+let year = dateBirthday.getFullYear();
+let strDateBirthday = `${day}.${month}.${year}`;
 console.log("My birthday: " + strDateBirthday);
 
 function getDiffDays (start, end) {
     const startDate = new Date(start);
     const endDate = new Date(end);
-    let daysBetweenStartAndEnd = (endDate - startDate) / 86400 / 1000;
-    
+    const DAY_IN_MILLISECONDS = 86400;
     if (startDate.toString() === "Invalid Date" || endDate.toString() === "Invalid Date") {
         return console.error("Error: invalid date");
     } if (startDate > endDate) {
         return console.error("Error: your start date is later than end");
     } else {
+        let daysBetweenStartAndEnd = (endDate - startDate) / DAY_IN_MILLISECONDS / 1000;
         return daysBetweenStartAndEnd;
     }; 
 };
